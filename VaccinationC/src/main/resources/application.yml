@@ -1,0 +1,28 @@
+server:    
+  port: 8002
+  
+spring:  
+  application:
+    name: VACCINATION-CENTER-SERVICE
+  cloud:
+    gcp:
+      project-id: total-name-504016-j2 # Replace with your actual GCP Project ID
+
+# Feign Client Target URL
+citizen:
+  service:
+    url: http://localhost:8001 # Update this when Citizen service is deployed to GCP
+
+# Resilience4j Circuit Breaker Configuration
+resilience4j:
+  circuitbreaker:
+    instances:
+      citizenService:
+        registerHealthIndicator: true
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowSize: 10
+        slidingWindowType: COUNT_BASED
