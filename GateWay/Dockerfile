@@ -1,5 +1,5 @@
 # Use an official OpenJDK runtime as a parent image
-FROM amazoncorretto:11-alpine
+FROM eclipse-temurin:11-jre
 
 # Set the working directory inside the container
 WORKDIR /app
