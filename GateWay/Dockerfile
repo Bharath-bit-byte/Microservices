@@ -1,0 +1,14 @@
+# Use an official OpenJDK runtime as a parent image
+FROM openjdk:11-jre-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy all files from your current folder (CitizenF) into the container
+COPY . /app
+
+# Expose port 8080 so Cloud Run can access your app
+EXPOSE 8080
+
+# Run your Spring Boot or Java application (replace 'your-app.jar' with your actual JAR file name)
+CMD ["java", "-jar", "API-GATEWAY.jar"]
